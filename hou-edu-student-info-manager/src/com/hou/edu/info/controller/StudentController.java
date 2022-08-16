@@ -6,8 +6,9 @@ import com.hou.edu.info.service.StudentService;
 import java.util.Scanner;
 
 public class StudentController {
+    Scanner sc = new Scanner(System.in);
+    StudentService studentService = new StudentService();
     public void start() {
-        Scanner sc = new Scanner(System.in);
         studentchoice :while  (true){
             System.out.println("---欢迎来到学生管理系统---");
             System.out.println("1. 添加学生 2.删除学生 3.修改学生 4.查询学生 5.返回上级");
@@ -19,9 +20,11 @@ public class StudentController {
                     break;
                 case "2":
                     System.out.println("进入删除学生");
+                    deleteStudentByid();
                     break;
                 case "3":
                     System.out.println("进入修改学生");
+                    fixStudent();
                     break;
                 case "4":
                     System.out.println("进入查询学生");
@@ -34,6 +37,49 @@ public class StudentController {
             }
         }
 
+    }
+
+    public void fixStudent() {
+        System.out.println("请输入你想修改的id");
+        String fixid = sc.next();
+        boolean isexit = studentService.isExist(fixid);
+        if (!isexit){
+            System.out.println("不好意思，没有");
+            return;
+        }
+        Student newstu= new Student();
+        System.out.println("请输入你的学号");
+        String id= sc.next();
+        System.out.println("请输入你的名称");
+        String name = sc.next();
+        System.out.println("请输入你的生日");
+        String birthday = sc.next();
+        System.out.println("请输入你的年龄");
+        newstu.setId(id);
+        newstu.setName(name);
+        newstu.setBirthday(birthday);
+
+        studentService.fixStudent(id,newstu);
+
+
+    }
+
+    public void deleteStudentByid() {
+        Student[] stus = studentService.findAllStudent();
+        if (stus == null){
+            System.out.println("不好意思，啥也没有，别查了");
+            return;
+        }
+        System.out.println("请输入你想删除的id");
+        String id = sc.next();
+
+        boolean isExist =  studentService.isExist(id);
+        if (isExist){
+            System.out.println("存在正在删除");
+            studentService.deleteStudentByid(id);
+        }else{
+            System.out.println("不好意思不存在");
+        }
     }
 
     public void addStudent() {
@@ -49,7 +95,7 @@ public class StudentController {
             boolean idflag = studentService.isExist(id);
             System.out.println(idflag);
             if (idflag == true){
-                System.out.println("不好意思id已经存在"+id);
+                System.out.println("不好意思id已经存在"+id+" 取消添加请回复q");
 
             }else {
 

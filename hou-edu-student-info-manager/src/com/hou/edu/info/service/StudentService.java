@@ -30,4 +30,17 @@ public class StudentService {
         }
         return exist;
     }
+
+    public void deleteStudentByid(String id) {
+        studentDao.deleteStudentByid(id);
+    }
+
+    public Student[] findAllStudent() {
+        Student[] stus = studentDao.findAllStudent();
+        return stus;
+    }
+
+    public void fixStudent(String id, Student newstu) {
+        studentDao.fixStudent(id,newstu);
+    }
 }

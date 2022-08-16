@@ -28,4 +28,28 @@ public class StudentDao {
     public Student[] findAllStudent() {
         return stus;
     }
+
+    public void deleteStudentByid(String id) {
+        int index = searchStudentByid(id);
+        //给该索引赋值null
+        stus[index] = null;
+    }
+
+    //通过id查找索引
+    public int searchStudentByid(String id){
+        int index = -1;
+        for (int i = 0;i< stus.length;i++){
+            Student stu = stus[i];
+            if (stu != null && stu.getId().equals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public void fixStudent(String id, Student newstu) {
+        int index = searchStudentByid(id);
+        stus[index] = newstu;
+    }
 }
