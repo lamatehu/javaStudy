@@ -4,7 +4,7 @@ import com.hou.edu.info.domain.Student;
 
 import java.lang.reflect.Array;
 
-public class StudentDao {
+public class StudentDao implements BaseStudentgDao {
     private static Student[] stus =  new Student[5];
     public boolean addStudent(Student stu) {
 

@@ -4,7 +4,7 @@ import com.hou.edu.info.domain.Student;
 
 import java.util.ArrayList;
 
-public class OtherStudentDao {
+public class OtherStudentDao implements BaseStudentgDao{
     private static ArrayList<Student> stus = new ArrayList<>();
 
     static {
@@ -18,7 +18,7 @@ public class OtherStudentDao {
 
     public Student[] findAllStudent() {
         Student students[] = new Student[stus.size()];
-        for (int i=0;i<=stus.size();i++){
+        for (int i=0;i<stus.size();i++){
             students[i] = stus.get(i);
         }
         return students;

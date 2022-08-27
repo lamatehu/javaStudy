@@ -1,10 +1,13 @@
 package com.hou.edu.info.service;
 
+import com.hou.edu.info.dao.BaseStudentgDao;
 import com.hou.edu.info.dao.OtherStudentDao;
 import com.hou.edu.info.dao.StudentDao;
 import com.hou.edu.info.domain.Student;
+import com.hou.edu.info.factory.StudentDaoFactory;
 
 public class StudentService {
+    BaseStudentgDao studentgDao = StudentDaoFactory.getStudentDao();
     OtherStudentDao studentDao = new OtherStudentDao();
     //StudentDao studentDao = new StudentDao();
     public boolean addStudent(Student stu) {
